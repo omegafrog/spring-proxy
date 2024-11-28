@@ -1,19 +1,24 @@
 package hello.proxy.pureproxy.concreteproxy.code;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@RequiredArgsConstructor
 public class TimeProxy extends ConcreteLogic {
+    private final ConcreteLogic concreteLogic;
 
-    private final ConcreteLogic target;
+    public TimeProxy(ConcreteLogic concreteLogic) {
+        this.concreteLogic = concreteLogic;
+    }
+
     @Override
-    public String operation() {
-        long startTime = System.currentTimeMillis();
-        String result = super.operation();
-        long endTime = System.currentTimeMillis();
-        log.info("elapsed time = {}", endTime - startTime);
-        return result;
+    public String operator() {
+        log.info("TimeDecorator 실행");
+        long start = System.currentTimeMillis();
+        String  res = super.operator();
+        long end = System.currentTimeMillis();
+        log.info("resultTime : {}", end - start);
+        log.info("TimeDecorator 종료");
+        
+        return res;
     }
 }

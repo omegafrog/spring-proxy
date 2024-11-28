@@ -1,32 +1,33 @@
 package hello.proxy.pureproxy.decorator;
 
 import hello.proxy.pureproxy.decorator.code.*;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
-@Slf4j
-public class DecoratorPatternTest {
+public class DecoratorPatterntest {
 
     @Test
-    void noDecorator() {
-        Component realComponent = new RealComponent();
-        DecoratorPatternClient client = new DecoratorPatternClient(realComponent);
+    void noDecorator(){
+        Component component = new RealComponent();
+        DecoratorPatternClient client = new DecoratorPatternClient(component);
+        client.execute();
+        client.execute();
         client.execute();
     }
 
     @Test
-    void decorateTest(){
-        Component realComponent = new RealComponent();
-        Component decorateComponent = new MessageDecorator(realComponent);
-        DecoratorPatternClient client = new DecoratorPatternClient(decorateComponent);
+    void deocator(){
+        Component component = new RealComponent();
+        MessageDecorator decorator = new MessageDecorator(component);
+        DecoratorPatternClient client = new DecoratorPatternClient(decorator);
         client.execute();
     }
+
     @Test
-    void decorateTest2(){
-        Component realComponent = new RealComponent();
-        Component decorateComponent = new MessageDecorator(realComponent);
-        Component timeDecorator = new TimeDecorator(decorateComponent);
-        DecoratorPatternClient client = new DecoratorPatternClient(timeDecorator);
+    void decorator2(){
+        Component component = new RealComponent();
+        TimeDecorator timeDecorator = new TimeDecorator(component);
+        MessageDecorator messageDecorator = new MessageDecorator(timeDecorator);
+        DecoratorPatternClient client = new DecoratorPatternClient(messageDecorator);
         client.execute();
     }
 }

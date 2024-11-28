@@ -4,8 +4,10 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class ConcreteLogic {
-    public String operation() {
-        log.info("Concrete Logic");
-        return "Concrete Logic";
+
+    public String operator(){
+        log.info("concrete logic");
+        return "data";
     }
+
 }

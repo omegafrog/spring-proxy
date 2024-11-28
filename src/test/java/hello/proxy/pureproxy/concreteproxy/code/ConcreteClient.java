@@ -1,12 +1,14 @@
 package hello.proxy.pureproxy.concreteproxy.code;
 
-import lombok.RequiredArgsConstructor;
-
-@RequiredArgsConstructor
 public class ConcreteClient {
-    private final ConcreteLogic logic;
+
+    private final ConcreteLogic concreteLogic;
+
+    public ConcreteClient(ConcreteLogic concreteLogic) {
+        this.concreteLogic = concreteLogic;
+    }
 
     public void execute(){
-        logic.operation();
+        concreteLogic.operator();
     }
 }

@@ -1,23 +1,24 @@
 package hello.proxy.app.v2;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-@RequiredArgsConstructor
-@RequestMapping("/v2")
 @ResponseBody
-public class OrderControllerV2{
+@RequestMapping
+public class OrderControllerV2  {
 
     private final OrderServiceV2 orderServiceV2;
-    @GetMapping("/request")
+
+    public OrderControllerV2(OrderServiceV2 orderServiceV2) {
+        this.orderServiceV2 = orderServiceV2;
+    }
+    @GetMapping("/v2/request")
     public String request(String itemId) {
-        orderServiceV2.orderItem(itemId);
+        orderServiceV2.order(itemId);
         return "ok";
     }
-
-    @GetMapping("/no-log")
+    @GetMapping("/v2/no-log")
     public String noLog() {
         return "ok";
     }

@@ -1,6 +1,5 @@
-package hello.proxy.jdkdynamic.code;
+package hello.proxy.jdkDynamic.code;
 
 public interface AInterface {
     String call();
-    String callB();
 }

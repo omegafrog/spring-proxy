@@ -1,4 +1,4 @@
-package hello.proxy.jdkdynamic.code;
+package hello.proxy.jdkDynamic.code;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -9,20 +9,19 @@ import java.lang.reflect.Method;
 public class TimeInvocationHandler implements InvocationHandler {
 
     private final Object target;
-    @Override
-    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        log.info("TimeProxy 실행");
-        long start = System.currentTimeMillis();
-
-        Object result = method.invoke(target, args);
-        long end = System.currentTimeMillis();
-        long elapsed = end - start;
-        log.info("result time:{}", elapsed);
-
-        return result;
-    }
 
     public TimeInvocationHandler(Object target) {
         this.target = target;
+    }
+
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        log.info("start");
+        long startMilli = System.currentTimeMillis();
+        Object result = method.invoke(target, args);
+        long endMilli = System.currentTimeMillis();
+        log.info("resul time : {}", endMilli - startMilli);
+        log.info("end");
+        return result;
     }
 }

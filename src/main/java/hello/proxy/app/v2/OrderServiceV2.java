@@ -1,11 +1,17 @@
 package hello.proxy.app.v2;
 
-import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
-@RequiredArgsConstructor
+@Slf4j
 public class OrderServiceV2 {
+
     private final OrderRepositoryV2 orderRepositoryV2;
-    public void orderItem(String itemId) {
+
+    public OrderServiceV2(OrderRepositoryV2 orderRepositoryV2) {
+        this.orderRepositoryV2 = orderRepositoryV2;
+    }
+
+    public void order(String itemId) {
         orderRepositoryV2.save(itemId);
     }
 }
